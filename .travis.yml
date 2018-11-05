@@ -54,7 +54,7 @@ deploy:
   - secure: "encrypted deployment key"
   file_glob: true
   file: 
-    - "${FILE_TO_UPLOAD}"
+    - "${FILE_TO_UPLOAD}"~.sha1
   skip_cleanup: true
   on:
     repo: Xor-el/TravisPlayGround
