@@ -45,14 +45,11 @@ script:
   - $LAZ_ENV ./src/bin/travisplayground # Run binary
   # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
-before_deploy:
-  - export FILE_TO_UPLOAD=$(./src/bin/travisplayground)
-
 deploy:
   provider: releases
   api_key: '$GITHUB_API_KEY'
   file: 
-    - "${FILE_TO_UPLOAD}"
+    - ./src/bin/travisplayground
     # - ./src/bin/travisplayground.sha1 
   skip_cleanup: true
   on:
