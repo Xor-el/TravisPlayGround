@@ -44,7 +44,7 @@ script:
   - lazbuild $LAZ_OPT ./src/travisplayground.lpi  # Build project
   - $LAZ_ENV ./src/bin/travisplayground # Run binary
   - echo "-d$LAZ_ENV" ~./src/bin/travisplayground
-  - "-d$LAZ_ENV" ~./src/bin/travisplayground
+  # - "-d$LAZ_ENV" ~./src/bin/travisplayground
 
 notifications:
   email:
