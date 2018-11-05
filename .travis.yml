@@ -43,8 +43,22 @@ install:
 script:
   - lazbuild $LAZ_OPT ./src/travisplayground.lpi  # Build project
   - $LAZ_ENV ./src/bin/travisplayground # Run binary
-  - echo "-d$LAZ_ENV" ~./src/bin/travisplayground
-  # - "-d$LAZ_ENV" ~./src/bin/travisplayground
+  - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
+
+before_deploy:
+  - export FILE_TO_UPLOAD=$(./src/bin/travisplayground)
+
+deploy:
+  provider: releases
+  api_key:
+  - secure: "encrypted deployment key"
+  file_glob: true
+  file: 
+    - "${FILE_TO_UPLOAD}".sha1
+  skip_cleanup: true
+  on:
+    repo: Xor-el/TravisPlayGround
+    tags: true
 
 notifications:
   email:
