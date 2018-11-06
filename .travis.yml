@@ -77,7 +77,7 @@ deploy:
   name: "travisplayground_LINUX"
   on:
     branch: master
-    condition: $LINUX_DEPLOY = "true"
+    condition: $LINUX_DEPLOY = "false"
     repo: Xor-el/TravisPlayGround
     tags: true
 
