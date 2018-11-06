@@ -78,7 +78,7 @@ deploy:
     # condition:  ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" != "wine")
     condition:  ($TRAVIS_OS_NAME == "linux")
     repo: Xor-el/TravisPlayGround
-    tags: true
+    # tags: true
 
   # Windows deploy
   provider: releases
