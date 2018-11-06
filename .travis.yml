@@ -27,6 +27,7 @@ matrix:
     #   env: LAZ_VER=1.8.4 LAZ_ENV=qemu-arm LAZ_OPT="--os=linux --cpu=arm"
 
 before_install:
+  - echo "Travis os name $TRAVIS_OS_NAME"
   # Start virtual display server
   - Xvfb $DISPLAY &
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -62,7 +63,6 @@ deploy:
   #   tags: true
 
   # Linux deploy
-  - echo "Travis os name $TRAVIS_OS_NAME"
   provider: releases
   api_key: '$GITHUB_API_KEY'
   overwrite: true
