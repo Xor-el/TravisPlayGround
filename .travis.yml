@@ -75,6 +75,7 @@ deploy:
     - ./src/bin/travisplayground
   skip_cleanup: true
   # name: "travisplayground_LINUX"
+  - echo "${TRAVIS_TAG}"
   on:
     # branch: master
     condition: $LINUX_DEPLOY = "true"
