@@ -74,7 +74,8 @@ deploy:
   body: "This is a Beta Version of this Software, Please Be Careful."
   on:
     # condition: ($TRAVIS_OS_NAME == "linux") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_linux$)
-    condition:  ("$LAZ_ENV" != "wine")
+    # condition:  ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" != "wine")
+    condition:  ($TRAVIS_OS_NAME == "linux")
     repo: Xor-el/TravisPlayGround
     tags: true
 
