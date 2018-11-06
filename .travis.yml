@@ -49,7 +49,7 @@ script:
 
 before_deploy:
 # - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.osx$) ]]; then export OSX_DEPLOY="true"; fi
-# - if [[ ("$TRAVIS_OS_NAME" == "linux") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.linux$) ]]; then export LINUX_DEPLOY="true"; fi
+- if [[ ("$TRAVIS_OS_NAME" == "linux") && ($TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+\.linux$) ]]; then export LINUX_DEPLOY="true"; fi
 # - if [[ ("$LAZ_ENV" == "wine") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.windows$) ]]; then export WINDOWS_DEPLOY="true"; fi
 
 deploy:
@@ -77,8 +77,8 @@ deploy:
   # name: "travisplayground_LINUX"
   on:
     # branch: master
-    # condition: $LINUX_DEPLOY = "true"
-    condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
+     condition: $LINUX_DEPLOY = "true"
+    # condition: $TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+
     repo: Xor-el/TravisPlayGround
     tags: true
 
