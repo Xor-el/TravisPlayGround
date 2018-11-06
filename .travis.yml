@@ -82,7 +82,7 @@ script:
   file: 
     - ./src/bin/travisplayground
   skip_cleanup: true
-  name: $TRAVIS_TAG
+  # name: $TRAVIS_TAG
   prerelease: true
   body: "Test Body"
   on:
