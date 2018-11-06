@@ -7,7 +7,7 @@ dist: trusty
 
 os:
   - linux
-  - osx
+  # - osx
 
 env:
   global:
@@ -19,7 +19,7 @@ env:
 
 matrix:
   include:
-    # - os: linux
+    - os: linux
     #   env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win32 LAZ_OPT="--os=win32 --cpu=i386"
     - os: linux
       env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win64 LAZ_OPT="--os=win64 --cpu=x86_64"
