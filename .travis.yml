@@ -80,7 +80,7 @@ deploy:
     # repo: Xor-el/TravisPlayGround
     tags: true
 
-  Windows deploy 
+  # Windows deploy 
   provider: releases
   api_key: '$GITHUB_API_KEY'
   overwrite: true
