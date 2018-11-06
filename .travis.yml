@@ -7,13 +7,12 @@ dist: trusty
 
 os:
   - linux
-  # - osx
+  - osx
 
 env:
   global:
     - WINEPREFIX=~/.winelaz
     - DISPLAY=:99.0
-    - OSX_DEPLOY="false" LINUX_DEPLOY="false" WINDOWS_DEPLOY="false"
     - LAZ_ENV=
   matrix:
     - LAZ_VER=1.8.4 # Use specific (binary) release
