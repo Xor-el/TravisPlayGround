@@ -43,7 +43,7 @@ install:
   - ./.travis.install.py
 
 script:
-  - lazbuild $LAZ_OPT ./src/travisplayground.lpi  # Build project
+  - lazbuild -B --build-mode=release $LAZ_OPT ./src/travisplayground.lpi  # Build project
   - $LAZ_ENV ./src/bin/travisplayground # Run binary
   # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
