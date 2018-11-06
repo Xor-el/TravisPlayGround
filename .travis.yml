@@ -7,28 +7,21 @@ dist: trusty
 
 os:
   - linux
-  # - osx
 
 env:
   global:
     - WINEPREFIX=~/.winelaz
     - DISPLAY=:99.0
-    # - LAZ_ENV=''
   matrix:
     - LAZ_VER=1.8.4 # Use specific (binary) release
 
 matrix:
   include:
     - os: linux
-    # - os: linux
-    #   env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win32 LAZ_OPT="--os=win32 --cpu=i386"
     - os: linux
       env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win64 LAZ_OPT="--os=win64 --cpu=x86_64"
-    # - os: linux
-    #   env: LAZ_VER=1.8.4 LAZ_ENV=qemu-arm LAZ_OPT="--os=linux --cpu=arm"
 
 before_install:
-  # - echo "Travis os name $TRAVIS_OS_NAME"
   # Start virtual display server
   - Xvfb $DISPLAY &
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -45,24 +38,8 @@ install:
 
 script:
   - lazbuild -B --build-mode=release $LAZ_OPT ./src/travisplayground.lpi  # Build project
-#   - $LAZ_ENV ./src/bin/travisplayground # Run binary
-  # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
 deploy:
-  # # OS X deploy
-  # provider: releases
-  # api_key: '$GITHUB_API_KEY'
-  # overwrite: true
-  # file: 
-  #   - ./src/bin/travisplayground
-  # skip_cleanup: true
-  # name: $TRAVIS_TAG
-  # on:
-  #   branch: master
-  #   condition: ($TRAVIS_OS_NAME == "osx") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_osx$)
-  #   repo: Xor-el/TravisPlayGround
-  #   tags: true
-
   # Linux deploy
   provider: releases
   api_key: '$GITHUB_API_KEY'
@@ -70,35 +47,32 @@ deploy:
   file: 
     - ./src/bin/travisplayground_x86_64-linux
   skip_cleanup: true
-  # name: "Build 4.0.0_Beta"
+  name: $TRAVIS_TAG
   # prerelease: true
   # draft: true
-  name: $TRAVIS_TAG
   release: true
   body: "This is a Beta Version of this Software, Please Be Careful."
   on:
-    # condition: ($TRAVIS_OS_NAME == "linux") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_linux$)
     condition:  ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == '')
-    # condition:  ("$LAZ_ENV" != "wine")
     repo: Xor-el/TravisPlayGround
     tags: true
 
   # Windows deploy 
-  provider: releases
-  api_key: '$GITHUB_API_KEY'
-  overwrite: true
-  file: 
-    - ./src/bin/travisplayground_x86_64-win64.exe
-  skip_cleanup: true
-  name: $TRAVIS_TAG
-  # prerelease: true
-  release: true
-  body: "This is a Beta Version of this Software, Please Be Careful."
-  on:
-    # condition: ("$LAZ_ENV" == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
-    condition: ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == "wine")
-    repo: Xor-el/TravisPlayGround
-    tags: true
+  # provider: releases
+  # api_key: '$GITHUB_API_KEY'
+  # overwrite: true
+  # file: 
+  #   - ./src/bin/travisplayground_x86_64-win64.exe
+  # skip_cleanup: true
+  # name: $TRAVIS_TAG
+  # # prerelease: true
+  # # draft: true
+  # release: true
+  # body: "This is a Beta Version of this Software, Please Be Careful."
+  # on:
+  #   condition: ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == "wine")
+  #   repo: Xor-el/TravisPlayGround
+  #   tags: true
 
 notifications:
   email:
