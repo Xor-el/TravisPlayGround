@@ -48,19 +48,19 @@ script:
   # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
 deploy:
-  # OS X deploy
-  provider: releases
-  api_key: '$GITHUB_API_KEY'
-  overwrite: true
-  file: 
-    - ./src/bin/travisplayground
-  skip_cleanup: true
-  name: $TRAVIS_TAG
-  on:
-    branch: master
-    condition: ($TRAVIS_OS_NAME == "osx") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_osx$)
-    repo: Xor-el/TravisPlayGround
-    tags: true
+  # # OS X deploy
+  # provider: releases
+  # api_key: '$GITHUB_API_KEY'
+  # overwrite: true
+  # file: 
+  #   - ./src/bin/travisplayground
+  # skip_cleanup: true
+  # name: $TRAVIS_TAG
+  # on:
+  #   branch: master
+  #   condition: ($TRAVIS_OS_NAME == "osx") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_osx$)
+  #   repo: Xor-el/TravisPlayGround
+  #   tags: true
 
 #   # Linux deploy
 #   provider: releases
@@ -75,20 +75,20 @@ deploy:
 #     repo: Xor-el/TravisPlayGround
 #     tags: true
 
-  # # Windows deploy
-  # provider: releases
-  # api_key: '$GITHUB_API_KEY'
-  # overwrite: true
-  # file: 
-  #   - ./src/bin/travisplayground
-  # skip_cleanup: true
-  # name: $TRAVIS_TAG
-  # prerelease: true
-  # body: "Test Body"
-  # on:
-  #   condition: ($LAZ_ENV == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
-  #   repo: Xor-el/TravisPlayGround
-  #   tags: true
+  # Windows deploy
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  overwrite: true
+  file: 
+    - ./src/bin/travisplayground
+  skip_cleanup: true
+  name: $TRAVIS_TAG
+  prerelease: true
+  body: "Test Body"
+  on:
+    condition: ("$LAZ_ENV" == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
+    repo: Xor-el/TravisPlayGround
+    tags: true
 
 notifications:
   email:
