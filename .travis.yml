@@ -69,15 +69,17 @@ deploy:
   file: 
     - ./src/bin/travisplayground_x86_64-linux
   skip_cleanup: true
-  name: "Build 4.0.0_Beta"
+  # name: "Build 4.0.0_Beta"
   # prerelease: true
+  # draft: true
+  name: $TRAVIS_TAG
   release: true
   body: "This is a Beta Version of this Software, Please Be Careful."
   on:
     # condition: ($TRAVIS_OS_NAME == "linux") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_linux$)
     condition:  ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == '')
     # condition:  ("$LAZ_ENV" != "wine")
-    # repo: Xor-el/TravisPlayGround
+    repo: Xor-el/TravisPlayGround
     tags: true
 
   # Windows deploy 
