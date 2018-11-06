@@ -80,10 +80,11 @@ deploy:
   api_key: '$GITHUB_API_KEY'
   overwrite: true
   file: 
-    - ./src/bin/travisplayground
+    - ./src/bin/travisplayground.exe
   skip_cleanup: true
   name: $TRAVIS_TAG
-  prerelease: true
+  # prerelease: true
+  release: true
   body: "Test Body"
   on:
     condition: ("$LAZ_ENV" == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
