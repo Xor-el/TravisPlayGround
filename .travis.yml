@@ -7,7 +7,7 @@ dist: trusty
 
 os:
   - linux
-  - osx
+  # - osx
 
 env:
   global:
@@ -22,8 +22,8 @@ matrix:
   include:
     # - os: linux
     #   env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win32 LAZ_OPT="--os=win32 --cpu=i386"
-    - os: linux
-      env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win64 LAZ_OPT="--os=win64 --cpu=x86_64"
+    # - os: linux
+    #   env: LAZ_VER=1.8.4 LAZ_ENV=wine WINEARCH=win64 LAZ_OPT="--os=win64 --cpu=x86_64"
     # - os: linux
     #   env: LAZ_VER=1.8.4 LAZ_ENV=qemu-arm LAZ_OPT="--os=linux --cpu=arm"
 
@@ -48,9 +48,9 @@ script:
   # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
 before_deploy:
-- if [[ ("$TRAVIS_OS_NAME" == "osx") && ("$TRAVIS_TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.osx$) ]]; then export OSX_DEPLOY="true"; fi
-- if [[ ("$TRAVIS_OS_NAME" == "linux") && ("$TRAVIS_TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.linux$) ]]; then export LINUX_DEPLOY="true"; fi
-- if [[ ("$LAZ_ENV" == "wine") && ("$TRAVIS_TAG" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.windows$) ]]; then export WINDOWS_DEPLOY="true"; fi
+# - if [[ ("$TRAVIS_OS_NAME" == "osx") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.osx$) ]]; then export OSX_DEPLOY="true"; fi
+- if [[ ("$TRAVIS_OS_NAME" == "linux") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.linux$) ]]; then export LINUX_DEPLOY="true"; fi
+# - if [[ ("$LAZ_ENV" == "wine") && ("${TRAVIS_TAG}" =~ ^[0-9]+\.[0-9]+\.[0-9]+\.windows$) ]]; then export WINDOWS_DEPLOY="true"; fi
 
 deploy:
   # # OS X deploy
@@ -67,33 +67,33 @@ deploy:
   #   repo: Xor-el/TravisPlayGround
   #   tags: true
 
-  # # Linux deploy
-  # provider: releases
-  # api_key: '$GITHUB_API_KEY'
-  # overwrite: true
-  # file: 
-  #   - ./src/bin/travisplayground
-  # skip_cleanup: true
-  # name: "travisplayground_LINUX"
-  # on:
-  #   branch: master
-  #   condition: $LINUX_DEPLOY = "true"
-  #   repo: Xor-el/TravisPlayGround
-  #   tags: true
-
-  # Windows deploy
+  # Linux deploy
   provider: releases
   api_key: '$GITHUB_API_KEY'
   overwrite: true
   file: 
     - ./src/bin/travisplayground
   skip_cleanup: true
-  name: "travisplayground_WINDOWS.exe"
+  name: "travisplayground_LINUX"
   on:
-    # branch: master
-    condition: $WINDOWS_DEPLOY = "true"
+    branch: master
+    condition: $LINUX_DEPLOY = "true"
     repo: Xor-el/TravisPlayGround
     tags: true
+
+  # Windows deploy
+  # provider: releases
+  # api_key: '$GITHUB_API_KEY'
+  # overwrite: true
+  # file: 
+  #   - ./src/bin/travisplayground
+  # skip_cleanup: true
+  # name: "travisplayground_WINDOWS.exe"
+  # on:
+  #   # branch: master
+  #   condition: $WINDOWS_DEPLOY = "true"
+  #   repo: Xor-el/TravisPlayGround
+  #   tags: true
 
 notifications:
   email:
