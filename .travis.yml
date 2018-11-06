@@ -81,21 +81,21 @@ deploy:
     # tags: true
 
   # Windows deploy
-  provider: releases
-  api_key: '$GITHUB_API_KEY'
-  overwrite: true
-  file: 
-    - ./src/bin/travisplayground_x86_64-win64.exe
-  skip_cleanup: true
-  name: "Build 4.0.0_Beta"
-  # prerelease: true
-  release: true
-  body: "This is a Beta Version of this Software, Please Be Careful."
-  on:
-    # condition: ("$LAZ_ENV" == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
-    condition: ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == "wine")
-    repo: Xor-el/TravisPlayGround
-    tags: true
+  # provider: releases
+  # api_key: '$GITHUB_API_KEY'
+  # overwrite: true
+  # file: 
+  #   - ./src/bin/travisplayground_x86_64-win64.exe
+  # skip_cleanup: true
+  # name: "Build 4.0.0_Beta"
+  # # prerelease: true
+  # release: true
+  # body: "This is a Beta Version of this Software, Please Be Careful."
+  # on:
+  #   # condition: ("$LAZ_ENV" == "wine") && ($TRAVIS_TAG =~ ^v[0-9]+\.[0-9]+\.[0-9]+\_windows$)
+  #   condition: ($TRAVIS_OS_NAME == "linux") && ("$LAZ_ENV" == "wine")
+  #   repo: Xor-el/TravisPlayGround
+  #   tags: true
 
 notifications:
   email:
