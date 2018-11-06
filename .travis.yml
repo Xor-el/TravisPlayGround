@@ -62,6 +62,7 @@ deploy:
   #   tags: true
 
   # Linux deploy
+  - echo "Travis os name $TRAVIS_OS_NAME"
   provider: releases
   api_key: '$GITHUB_API_KEY'
   overwrite: true
