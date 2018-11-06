@@ -74,10 +74,10 @@ deploy:
   file: 
     - ./src/bin/travisplayground
   skip_cleanup: true
-  name: "travisplayground_LINUX"
+  # name: "travisplayground_LINUX"
   on:
-    branch: master
-    condition: $LINUX_DEPLOY = "false"
+    # branch: master
+    condition: $LINUX_DEPLOY = "true"
     repo: Xor-el/TravisPlayGround
     tags: true
 
