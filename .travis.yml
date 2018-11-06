@@ -44,7 +44,7 @@ install:
 
 script:
   - lazbuild -B --build-mode=release $LAZ_OPT ./src/travisplayground.lpi  # Build project
-  - $LAZ_ENV ./src/bin/travisplayground # Run binary
+#   - $LAZ_ENV ./src/bin/travisplayground # Run binary
   # - sha1sum ./src/bin/travisplayground > ./src/bin/travisplayground.sha1
 
 deploy:
@@ -80,7 +80,7 @@ deploy:
   api_key: '$GITHUB_API_KEY'
   overwrite: true
   file: 
-    - ./src/bin/travisplayground.exe
+    - ./src/bin/travisplayground_x86_64-win64.exe
   skip_cleanup: true
   name: $TRAVIS_TAG
   # prerelease: true
